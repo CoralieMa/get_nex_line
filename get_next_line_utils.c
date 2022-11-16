@@ -6,13 +6,47 @@
 /*   By: cmartino <cmartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 09:28:53 by cmartino          #+#    #+#             */
-/*   Updated: 2022/11/03 08:22:49 by cmartino         ###   ########.fr       */
+/*   Updated: 2022/11/16 16:10:43 by cmartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdio.h>
 
-int	ft_strlen(const char *s)
+int	ft_strrchr(const char *s, int c)
+{
+	int		i;
+
+	i = 0;
+	if (!s)
+		return (0);
+	while (s[i])
+	{
+		if (s[i] == c)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	char	*str;
+	size_t		i;
+
+	str = malloc(size * count);
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (i < size * count)
+	{
+		str[i] = '\0';
+		i++;
+	}
+	return (str);
+}
+
+size_t	ft_strlen(const char *s)
 {
 	size_t	len;
 
@@ -24,59 +58,81 @@ int	ft_strlen(const char *s)
 	return (len);
 }
 
-int	ft_strlcpy(char *dst, const char *src, int dstsize)
+char	*ft_strncpy(const char *src, int dstsize)
 {
 	int	i;
 	int	len;
+	char *dst;
 
 	i = 0;
 	len = ft_strlen(src);
 	if (dstsize == 0)
-		return (len);
-	while ((src[i] || src[i] == '\n') && (i < dstsize - 1))
+		return (NULL);
+	dst = malloc(sizeof(char) * dstsize + 1);
+	if (!dst)
+		return (NULL);
+	while (src[i] && (i < dstsize))
 	{
 		dst[i] = src[i];
 		i++;
 	}
 	dst[i] = '\0';
-	return (len);
+	return (dst);
 }
 
-char	*ft_strdup(const char *s1)
+
+char	*ft_strjoin(char *s1, char *s2)
 {
-	int	len;
-	char	*s2;
+	char	*str;
+	int		i;
+	int		j;
+	int		size;
 
-	len = ft_strlen(s1);
-	s2 = (char *) malloc(len * sizeof(char) + 1);
-	if (!s2)
+	size = ft_strlen(s1) + ft_strlen(s2);
+	str = (char *)malloc(sizeof(char) * (size + 1));
+	if (!str || !s1 || !s2)
 		return (NULL);
-	ft_strlcpy(s2, s1, len + 1);
-	return (s2);
+	i = 0;
+	while (s1[i])
+	{
+		str[i] = s1[i];
+		i++;
+	}
+	free(s1);
+	j = 0;
+	while (s2[j])
+	{
+		str[i] = s2[j];
+		i++;
+		j++;
+	}
+	str[size] = '\0';
+	return (str);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
-{
-	int	s1_len;
-	int	s2_len;
-	char	*s;
-
-	if (!s1 || !s2)
-		return (NULL);
-	s1_len = ft_strlen(s1);
-	s2_len = ft_strlen(s2);
-	s = (char *) malloc((s1_len + s2_len) * sizeof(char) + 1);
-	if (!s)
-		return (NULL);
-	s[s1_len + s2_len] = '\0';
-	ft_strlcpy(s, s1, s1_len + 1);
-	ft_strlcpy(&s[s1_len], s2, s2_len + 1);
-	return (s);
-}
-
-//  #include <stdio.h>
-
-// int main(void)
+// char	*ft_strjoin(char const *s1, char const *s2)
 // {
-// 	printf("%s", ft_strdup("Hello"));
+// 	int		size;
+// 	int		s1_len;
+// 	int		i;
+// 	char	*s;
+
+// 	if (!s2)
+// 		return (NULL);
+// 	size = ft_strlen(s1) + ft_strlen(s2);
+// 	s1_len = ft_strlen(s1);
+// 	s = (char *) malloc((size) * sizeof(char));
+// 	if (!s)
+// 		return (NULL);
+// 	s = ft_strncpy(s1, s1_len);
+// 	printf("%s", s);
+// 	exit(1);
+// 	i = 0;
+// 	while (s2 && s2[i])
+// 	{
+// 		s[s1_len + i] = s2[i];
+// 		i++;
+// 	}
+// 	s[size - 1] = '\0';
+// 	return (s);
 // }
