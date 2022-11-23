@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cmartino <cmartino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/02 09:28:53 by cmartino          #+#    #+#             */
-/*   Updated: 2022/11/17 13:57:23 by cmartino         ###   ########.fr       */
+/*   Created: 2022/11/17 10:03:03 by cmartino          #+#    #+#             */
+/*   Updated: 2022/11/17 13:57:55 by cmartino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 int	ft_strrchr(const char *s, int c)
 {
